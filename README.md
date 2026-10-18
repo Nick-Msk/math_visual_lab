@@ -1,5 +1,11 @@
 # Math Visual Lab 🧮📈
 
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Dash](https://img.shields.io/badge/Dash-3.x-008080.svg)](https://dash.plotly.com/)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Интерактивная веб-лаборатория для визуализации математики, теории сигналов и линейных систем.
 
 Приложение построено на базе **Dash** и **Plotly** и позволяет в реальном времени "крутить ручки" параметров, наблюдая за тем, как оживают математические абстракции.
@@ -83,27 +89,41 @@ uv run math-visual-lab```
 
 Примечание: Благодаря uv приложение можно запускать и без активации виртуального окружения — команда uv run math-visual-lab сама подхватит нужное окружение. Активация (шаг 3) полезна, если вы хотите запускать обычный python, работать в IDE (например, VS Code или PyCharm) или использовать ruff из командной строки.
 
+
+### 🐳 Запуск через Docker
+Если вы не хотите ставить зависимости локально, можно запустить всё в контейнере:
+
+#### Вариант 1: Автоматический скрипт (рекомендуется)
+
+В проекте есть скрипт-обёртка, который сам собирает образ и запускает контейнер:
+```bash
+uv run docker-start```
+
+Как выйти: Нажмите Ctrl+C в терминале. Скрипт автоматически остановит и удалит контейнер, чтобы не оставлять мусор.
+
+#### Вариант 2: Ручной запуск
+
+bash```
+docker build -t math_visual_lab .
+docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab```
+
+Как выйти: Нажмите Ctrl+C. Чтобы полностью удалить остановленный контейнер, выполните docker rm math_lab.
+
+### Откройте http://localhost:8050 в браузере.
+
+(Переменная -e DOCKER_ENV=1 сообщает приложению, что внутри контейнера нет браузера, и не пытаться его открыть).
+
 ## 🧹 Разработка и линтинг
 
 ### Для проверки кода используется ruff. Установите dev-зависимости и запустите линтер:
 ```bash
 uv sync --group dev
 ruff check app.py```
+
 Проверка, что приложение собирается без ошибок (без запуска сервера):
 
 ```bash
 python -c "import app; print('OK')"```
-
-### 🐳 Запуск через Docker
-Если вы не хотите ставить зависимости локально, можно запустить всё в контейнере:
-
-bash```
-docker build -t math_visual_lab .
-docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab```
-
-Откройте http://localhost:8050 в браузере.
-
-(Переменная -e DOCKER_ENV=1 сообщает приложению, что внутри контейнера нет браузера, и не пытаться его открыть).
 
 ## 📜 Лицензия
 
