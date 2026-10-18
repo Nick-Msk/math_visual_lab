@@ -1,7 +1,7 @@
 import threading
 import time
 import webbrowser
-
+import os
 import numpy as np
 import plotly.graph_objects as go
 from dash import Dash, Input, Output, dcc, html
@@ -3165,7 +3165,7 @@ def update_conv_spec(w_sel, noise_amp, period, zero_edges):
 
     return fig, info
 
-if __name__ == '__main__':
+def main():
     # Открываем браузер только если мы НЕ в Docker
     if not os.environ.get('DOCKER_ENV'):
         def open_browser():
@@ -3175,4 +3175,9 @@ if __name__ == '__main__':
 
     # host='0.0.0.0' нужен, чтобы к приложению можно было подключиться извне (в Docker)
     app.run(debug=True, use_reloader=False, host='0.0.0.0', port=8050)
+
+
+if __name__ == '__main__':
+    main()
+
 
