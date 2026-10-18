@@ -1,5 +1,5 @@
 import subprocess
-import sys
+
 
 def main():
     print("🐳 Сборка Docker-образа...")

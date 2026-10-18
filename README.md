@@ -160,6 +160,10 @@ ruff check app.py
 python -c "import app; print('OK')"
 ```
 
+## ⚠️ Дисклеймер
+
+Проект создан в учебных целях и предоставляется «как есть». Подробности читайте в файле [DISCLAIMER.md](DISCLAIMER.md).
+
 ## 📜 Лицензия
 
 MIT License. Подробности в файле LICENSE.
