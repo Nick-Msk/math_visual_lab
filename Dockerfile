@@ -13,16 +13,12 @@ COPY pyproject.toml README.md ./
 # ШАГ 2: Ставим зависимости через uv.
 # Используем --mount=type=cache, чтобы uv кэшировал скачанные пакеты между сборками.
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --no-install-project
+    uv pip compile pyproject.toml -o /tmp/requirements.txt && \
+    uv pip install --system --no-cache-dir -r /tmp/requirements.txt
 
 # ШАГ 3: Теперь копируем весь остальной исходный код.
 # Этот слой будет меняться при каждой правке, но установка зависимостей (ШАГ 2) уже закэширована.
-COPY . .
-
-# ШАГ 4: Устанавливаем сам проект (без повторной установки зависимостей).
-# Это быстро, так как все пакеты уже на месте.
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --no-install-project --no-editable
+COPY app.py ./
 
 EXPOSE 8050
 

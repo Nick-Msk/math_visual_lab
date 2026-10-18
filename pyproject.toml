@@ -23,7 +23,6 @@ math-visual-lab = "app:main"
 
 [tool.uv]
 package = true
-system = true
 
 [tool.setuptools]
 py-modules = ["app"]
