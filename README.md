@@ -135,7 +135,7 @@ uv run docker-start
 
 #### Вариант 2: Ручной запуск
 
-bash```
+```bash
 docker build -t math_visual_lab .
 docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab
 ```
