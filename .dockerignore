@@ -1,6 +1,9 @@
 .venv
 .git
+.gitignore
 __pycache__
 *.pyc
 *.log
+README.md
+DISCLAIMER.md
 

@@ -1,0 +1,9 @@
+services:
+  math-visual-lab:
+    build: .
+    ports:
+      - "8050:8050"
+    environment:
+      - DOCKER_ENV=1
+    container_name: math_lab
+

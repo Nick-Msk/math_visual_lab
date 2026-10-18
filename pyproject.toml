@@ -20,13 +20,12 @@ dev = [
 
 [project.scripts]
 math-visual-lab = "app:main"
-docker-start = "docker_start:main"
 
 [tool.uv]
 package = true
 
 [tool.setuptools]
-py-modules = ["app", "docker_start"]
+py-modules = ["app"]
 
 [tool.ruff]
 line-length = 100
