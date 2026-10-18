@@ -13,3 +13,35 @@ dependencies = [
     "sympy>=1.12",
 ]
 
+[tool.uv]
+package = true
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [".venv", "venv"]
+
+[project.scripts]
+math-visual-lab = "app:main"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes (неиспользуемые импорты, undefined names)
+    "I",   # isort (порядок импортов)
+    "UP",  # pyupgrade (устаревший синтаксис)
+    "B",   # bugbear (потенциальные баги)
+]
+ignore = [
+    "E501",  # длинные строки — не критично для визуализаций
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
