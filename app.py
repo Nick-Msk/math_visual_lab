@@ -1,7 +1,8 @@
+import os
 import threading
 import time
 import webbrowser
-import os
+
 import numpy as np
 import plotly.graph_objects as go
 from dash import Dash, Input, Output, dcc, html
@@ -1070,7 +1071,7 @@ def update_orthogonality(n_harm, normalize_val, interval_mult, pair_i, pair_j):
 
     # График 2: Базисные функции
     fig_basis = go.Figure()
-    for b, name in zip(basis, names):
+    for b, name in zip(basis, names, strict=True):
         fig_basis.add_trace(go.Scatter(x=t, y=b, mode='lines', name=name, line=dict(width=2)))
     fig_basis.add_vline(x=L, line_dash='dash', line_color='gray')
     fig_basis.add_vline(x=-L, line_dash='dash', line_color='gray')
@@ -1194,7 +1195,7 @@ def update_complex_spectrum(n_max):
     fig_plane.add_vline(x=0, line_color='black', line_width=1)
 
     # Отображаем точки и векторы
-    for k, c in zip(k_vals, c_vals):
+    for k, c in zip(k_vals, c_vals, strict=True):
         if abs(c) < 1e-6:
             continue # пропускаем нулевые
 
@@ -1428,7 +1429,7 @@ def update_pulses(Q, tau):
     ), row=2, col=1)
 
     # Трейсы для палочек (гармоник)
-    for x_val, y_val in zip(fk, Cn):
+    for x_val, y_val in zip(fk, Cn, strict=True):
         if abs(y_val) > 1e-4:
             fig.add_trace(go.Scatter(
                 x=[x_val, x_val], y=[0, y_val],
@@ -1506,7 +1507,7 @@ def update_continuous_limit(Q, tau, scale_mode):
         marker_name = 'Гармоники C_n (истинные)'
 
     # Рисуем палочки от нуля до y_vals
-    for x_val, y_val in zip(fk, y_vals):
+    for x_val, y_val in zip(fk, y_vals, strict=True):
         if abs(y_val) > 1e-5:
             fig.add_trace(go.Scatter(
                 x=[x_val, x_val], y=[0, y_val],
@@ -2026,7 +2027,7 @@ def update_discharge(R, L, C):
     fig_time = go.Figure()
 
     # 1. Рисуем эталонные графики (пунктиром, серым)
-    for r_ref, name in zip(ref_Rs, ref_names):
+    for r_ref, name in zip(ref_Rs, ref_names, strict=True):
         sys_ref = signal.TransferFunction([1, r_ref], [1, r_ref, 1])
         t_ref, q_ref = signal.impulse(sys_ref)
         # Ограничиваем время 20 секундами для наглядности
@@ -2081,8 +2082,6 @@ def update_discharge(R, L, C):
     )
 
     # --- Текст с результатом ---
-    alpha = R / (2*L)
-    w0 = 1 / np.sqrt(L*C)
     crit_R = 2 * np.sqrt(L/C)
 
     if R < crit_R:
@@ -2449,7 +2448,6 @@ def update_rc_divider(R1_kOhm, R2_kOhm, C_uF, k):
 
     # --- Текст ---
     max_err = np.max(error)
-    R1_over_R2 = R1 / R2
 
     info = (
         f"Параметры: R₁ = {R1_kOhm:.1f} кОм, R₂ = {R2_kOhm:.1f} кОм, C = {C_uF:.2f} мкФ, k = {k:.1f} В/с\n"
