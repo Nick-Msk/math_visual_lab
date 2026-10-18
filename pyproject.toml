@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Interactive math and signal processing visualization lab"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 dependencies = [
     "dash>=2.14.0",
     "plotly>=5.18.0",
@@ -13,21 +13,25 @@ dependencies = [
     "sympy>=1.12",
 ]
 
-[tool.uv]
-package = true
-
 [dependency-groups]
 dev = [
     "ruff>=0.6.0",
 ]
 
+[project.scripts]
+math-visual-lab = "app:main"
+docker-start = "docker_start:main"
+
+[tool.uv]
+package = true
+
+[tool.setuptools]
+py-modules = ["app", "docker_start"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py310"
 exclude = [".venv", "venv"]
-
-[project.scripts]
-math-visual-lab = "app:main"
 
 [tool.ruff.lint]
 select = [

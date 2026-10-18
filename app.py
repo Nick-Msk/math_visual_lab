@@ -3172,6 +3172,11 @@ def main():
             time.sleep(1.0)
             webbrowser.open_new('http://127.0.0.1:8050/')
         threading.Thread(target=open_browser, daemon=True).start()
+    else:
+        print("\n" + "="*60)
+        print("🚀 Math Visual Lab запущен в Docker!")
+        print("👉 Откройте в браузере: http://localhost:8050")
+        print("="*60 + "\n")
 
     # host='0.0.0.0' нужен, чтобы к приложению можно было подключиться извне (в Docker)
     app.run(debug=True, use_reloader=False, host='0.0.0.0', port=8050)
