@@ -64,45 +64,57 @@
 
 ### **macOS (через Homebrew):**
 ```bash
-brew install uv```
+brew install uv
+```
 
 ### Linux / macOS (через curl):
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
 ### Windows (через PowerShell):
 ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"```
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 
 ### Через pip / pipx (кроссплатформенно):
-```pip install uv```
+```
+pip install uv
+```
  или
-```pipx install uv```
+```
+pipx install uv
+```
 
 ## 🚀 Установка и запуск
 
 ### Клонируйте репозиторий и перейдите в папку:
 ```bash
 git clone https://github.com/Nick-Msk/math_visual_lab.git
-cd math_visual_lab```
+cd math_visual_lab
+```
 
 ### Создайте виртуальное окружение и установите зависимости:
 (Эта команда автоматически создаст папку .venv и установит все нужные пакеты из pyproject.toml)
 ```bash
-uv sync```
+uv sync
+```
 
 ### Активируйте виртуальное окружение:
 Для macOS / Linux:
 ```bash
-source .venv/bin/activate```
+source .venv/bin/activate
+```
 
 Для Windows:
 ```
-.venv\Scripts\activate```
+.venv\Scripts\activate
+```
 
 ### Запустите приложение:
 ```bash
-uv run math-visual-lab```
+uv run math-visual-lab
+```
 
 (Браузер откроется автоматически по адресу http://127.0.0.1:8050)
 
@@ -116,7 +128,8 @@ uv run math-visual-lab```
 
 В проекте есть скрипт-обёртка, который сам собирает образ и запускает контейнер:
 ```bash
-uv run docker-start```
+uv run docker-start
+```
 
 Как выйти: Нажмите Ctrl+C в терминале. Скрипт автоматически остановит и удалит контейнер, чтобы не оставлять мусор.
 
@@ -124,7 +137,8 @@ uv run docker-start```
 
 bash```
 docker build -t math_visual_lab .
-docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab```
+docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab
+```
 
 Как выйти: Нажмите Ctrl+C. Чтобы полностью удалить остановленный контейнер, выполните docker rm math_lab.
 
@@ -137,12 +151,14 @@ docker run -p 8050:8050 -e DOCKER_ENV=1 math_visual_lab```
 ### Для проверки кода используется ruff. Установите dev-зависимости и запустите линтер:
 ```bash
 uv sync --group dev
-ruff check app.py```
+ruff check app.py
+```
 
 Проверка, что приложение собирается без ошибок (без запуска сервера):
 
 ```bash
-python -c "import app; print('OK')"```
+python -c "import app; print('OK')"
+```
 
 ## 📜 Лицензия
 
